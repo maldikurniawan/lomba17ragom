@@ -68,17 +68,6 @@ export const lomba = [
     warna: 'daun' as const,
     daftar: ['Joget balon pakai daster', 'Cantol besek', 'Gaplek']
   },
-  {
-    key: 'puncak',
-    kategori: 'Malam Puncak Kemerdekaan',
-    warna: 'outline' as const,
-    daftar: [
-      'Pemotongan tumpeng kemerdekaan (snack)',
-      'Pembagian piala & hadiah',
-      'Penayangan video dokumenter perayaan',
-      'Hiburan orgen'
-    ]
-  }
 ]
 
 export const panitia = [

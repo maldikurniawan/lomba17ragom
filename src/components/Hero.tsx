@@ -11,7 +11,7 @@ export function Hero() {
       <div className="container mx-auto grid items-center gap-4 sm:gap-14 lg:grid-cols-[1.25fr_0.9fr]">
         {/* Left */}
         <div className="animate-fade-up">
-          <h1 className="font-display text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-7xl">
+          <h1 className="font-display text-4xl font-black tracking-tight sm:text-5xl lg:text-7xl">
             Satu RT,
             <br />
             <span className="text-merdeka">Satu Semangat</span>
@@ -32,6 +32,7 @@ export function Hero() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button
+              nativeButton={false}
               size="lg"
               className="w-full sm:w-auto"
               render={<a href="#lomba" />}
@@ -40,6 +41,7 @@ export function Hero() {
             </Button>
 
             <Button
+              nativeButton={false}
               size="lg"
               variant="outline"
               className="w-full sm:w-auto"

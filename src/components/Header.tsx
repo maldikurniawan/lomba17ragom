@@ -6,6 +6,7 @@ const LINKS = [
   { href: "#jadwal", label: "Jadwal" },
   { href: "#lomba", label: "Lomba" },
   { href: "#panitia", label: "Panitia" },
+  { href: "/dokumentasi", label: "Dokumentasi" },
 ];
 
 export function Header() {
@@ -36,7 +37,7 @@ export function Header() {
     <header className={headerClass(scrolled)}>
       <div className="mx-auto flex h-16 w-full items-center justify-between px-4 sm:px-20">
         {/* Logo */}
-        <a href="#top" className="flex items-center gap-3">
+        <a href="#" className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full border border-tinta bg-merdeka font-display font-bold text-kapas">
             81
           </div>
@@ -99,8 +100,8 @@ export function Header() {
               </a>
             ))}
 
-            <Button className="w-full">
-              <a href="#dukung" onClick={() => setOpen(false)}>
+            <Button className="w-full mt-4">
+              <a href="#" onClick={() => setOpen(false)}>
                 Ikut Meriahkan
               </a>
             </Button>

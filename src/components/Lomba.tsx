@@ -6,7 +6,7 @@ import { CheckCircle2 } from "lucide-react";
 
 export function Lomba() {
   return (
-    <section id="lomba" className="bg-kertas/40 p-4 sm:px-20 sm:py-8">
+    <section id="lomba" className="bg-kertas/40 p-4 py-20 sm:p-20 sm:py-0">
       <div className="container">
         <SectionHeading
           eyebrow="Jenis Kegiatan"

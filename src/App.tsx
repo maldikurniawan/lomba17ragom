@@ -1,22 +1,15 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { Jadwal } from "@/components/Jadwal";
-import { Lomba } from "@/components/Lomba";
-import { Panitia } from "@/components/Panitia";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Dokumentasi from "@/pages/Dokumentasi";
+import Home from "@/pages/Home";
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
-        <Hero />
-        <Jadwal />
-        <Lomba />
-        <Panitia />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dokumentasi" element={<Dokumentasi />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

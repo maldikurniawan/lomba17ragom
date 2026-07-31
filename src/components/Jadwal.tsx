@@ -8,7 +8,7 @@ export function Jadwal() {
   return (
     <section
       id="jadwal"
-      className="mx-auto p-4 sm:py-8 sm:px-20"
+      className="mx-auto p-4 py-20 sm:p-20 sm:py-0"
     >
       <SectionHeading
         eyebrow="Waktu & Tempat"

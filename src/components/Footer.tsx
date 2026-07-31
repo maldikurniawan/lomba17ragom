@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container">
         <div className="grid gap-10 md:grid-cols-[1.3fr_1fr]">
           <div>
-            <p className="font-display text-2xl font-bold leading-snug sm:text-3xl">
+            <p className="font-display text-2xl mt-4 font-bold leading-snug sm:text-3xl">
               "{acara.tema}"
             </p>
             <p className="mt-6 max-w-xl text-sm leading-relaxed text-kapas/70">
