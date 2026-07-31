@@ -6,7 +6,6 @@ const LINKS = [
   { href: "#jadwal", label: "Jadwal" },
   { href: "#lomba", label: "Lomba" },
   { href: "#panitia", label: "Panitia" },
-  { href: "#dukung", label: "Dukung Kami" },
 ];
 
 export function Header() {
@@ -14,80 +13,109 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+
     window.addEventListener("scroll", onScroll);
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", onResize);
+
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   return (
-    <header
-      className={cnHeader(scrolled)}
-    >
-      <div className="container flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-tinta bg-merdeka font-display text-sm font-bold text-kapas">
+    <header className={headerClass(scrolled)}>
+      <div className="mx-auto flex h-16 w-full items-center justify-between px-4 sm:px-20">
+        {/* Logo */}
+        <a href="#top" className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-tinta bg-merdeka font-display font-bold text-kapas">
             81
-          </span>
-          <span className="font-display text-lg font-semibold leading-none">
-            RT 01
-            <span className="block font-body text-[10px] font-medium uppercase tracking-[0.2em] text-tinta/60">
+          </div>
+
+          <div>
+            <h1 className="font-display text-lg font-semibold leading-none">
+              RT 01
+            </h1>
+
+            <p className="text-[10px] uppercase tracking-[0.2em] text-tinta/60">
               Bukit Kemiling Permai
-            </span>
-          </span>
+            </p>
+          </div>
         </a>
 
+        {/* Desktop */}
         <nav className="hidden items-center gap-8 md:flex">
-          {LINKS.map((l) => (
+          {LINKS.map((item) => (
             <a
-              key={l.href}
-              href={l.href}
-              className="text-sm font-semibold text-tinta/80 transition-colors hover:text-merdeka"
+              key={item.href}
+              href={item.href}
+              className="text-sm font-semibold text-tinta/80 transition hover:text-merdeka"
             >
-              {l.label}
+              {item.label}
             </a>
           ))}
         </nav>
 
         <div className="hidden md:block">
-          <Button size="sm" render={<a href="#dukung" />}>
-            Ikut Meriahkan
+          <Button size="sm">
+            <a href="#">Ikut Meriahkan</a>
           </Button>
         </div>
 
+        {/* Mobile Button */}
         <button
-          className="rounded-lg border-2 border-tinta p-2 md:hidden"
           onClick={() => setOpen((v) => !v)}
-          aria-label="Buka menu"
+          className="rounded-lg border border-tinta p-2 md:hidden"
+          aria-label="Toggle Menu"
         >
-          {open ? <X size={18} /> : <Menu size={18} />}
+          {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
-      {open && (
-        <div className="border-t-2 border-tinta bg-kapas md:hidden">
-          <nav className="container flex flex-col gap-1 py-3">
-            {LINKS.map((l) => (
+      {/* Mobile Menu */}
+      <div
+        className={`overflow-hidden md:hidden ${open ? "max-h-96 border-t border-tinta/10" : "max-h-0"
+          }`}
+      >
+        <nav className="bg-kapas">
+          <div className="mx-auto flex max-w-7xl flex-col gap-2 p-4 sm:px-20">
+            {LINKS.map((item) => (
               <a
-                key={l.href}
-                href={l.href}
+                key={item.href}
+                href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-2 py-2.5 text-sm font-semibold text-tinta/80 hover:bg-kertas"
+                className="rounded-lg py-3 font-medium transition hover:bg-kertas hover:text-merdeka"
               >
-                {l.label}
+                {item.label}
               </a>
             ))}
-          </nav>
-        </div>
-      )}
+
+            <Button className="w-full">
+              <a href="#dukung" onClick={() => setOpen(false)}>
+                Ikut Meriahkan
+              </a>
+            </Button>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }
 
-function cnHeader(scrolled: boolean) {
+function headerClass(scrolled: boolean) {
   return [
-    "sticky top-0 z-50 transition-all duration-300",
+    "sticky top-0 z-50 w-full bg-kapas border-b border-tinta/10",
     scrolled
-      ? "bg-kapas/90 backdrop-blur border-b-2 border-tinta shadow-[0_2px_0_0_rgba(34,26,18,0.2)]"
-      : "bg-transparent border-b-2 border-transparent",
+      ? ""
+      : "",
   ].join(" ");
 }

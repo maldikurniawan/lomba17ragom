@@ -6,39 +6,56 @@ import type { ReactNode } from "react";
 
 export function Jadwal() {
   return (
-    <section id="jadwal" className="container py-20">
+    <section
+      id="jadwal"
+      className="mx-auto p-4 sm:py-8 sm:px-20"
+    >
       <SectionHeading
         eyebrow="Waktu & Tempat"
         title="Dua Akhir Pekan Lomba, Satu Malam Puncak"
         description="Seluruh rangkaian acara berlangsung di Halaman Warga RT 01 — cukup jalan kaki dari rumah."
       />
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2">
+      <div className="my-10 grid gap-6 lg:grid-cols-2">
         {jadwalUtama.map((j) => (
-          <Card key={j.label} className="relative">
-            <CardHeader>
-              <CardTitle>{j.label}</CardTitle>
+          <Card
+            key={j.label}
+            className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+          >
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl">{j.label}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 text-sm">
+
+            <CardContent className="space-y-4">
               <InfoRow icon={<Calendar size={16} />} text={j.tanggal} />
               <InfoRow icon={<Clock size={16} />} text={j.waktu} />
               <InfoRow icon={<MapPin size={16} />} text={j.tempat} />
-              <p className="pt-2 text-tinta/70">{j.keterangan}</p>
+
+              <div className="border-t pt-4">
+                <p className="leading-7 text-sm text-tinta/70">
+                  {j.keterangan}
+                </p>
+              </div>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <div className="mt-14">
-        <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-widest text-tinta/50">
+      <div>
+        <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-tinta/50">
           Terbuka untuk semua kategori usia
         </p>
-        <div className="flex flex-wrap gap-2.5">
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {kategoriPeserta.map((k) => (
-            <Badge key={k.nama} variant="outline" className="bg-kapas">
-              {k.nama}
-              <span className="ml-1.5 font-body font-normal normal-case text-tinta/50">
-                · {k.rentang}
+            <Badge
+              key={k.nama}
+              variant="outline"
+              className="flex h-auto flex-col items-center justify-center rounded-xl bg-kapas px-4 py-3 text-center"
+            >
+              <span className="font-semibold text-sm">{k.nama}</span>
+              <span className="mt-1 text-xs text-tinta/60">
+                {k.rentang}
               </span>
             </Badge>
           ))}
@@ -48,11 +65,22 @@ export function Jadwal() {
   );
 }
 
-function InfoRow({ icon, text }: { icon: ReactNode; text: string }) {
+function InfoRow({
+  icon,
+  text,
+}: {
+  icon: ReactNode;
+  text: string;
+}) {
   return (
-    <div className="flex items-center gap-2.5 text-tinta/85">
-      <span className="text-merdeka">{icon}</span>
-      <span className="font-medium">{text}</span>
+    <div className="flex items-center gap-3">
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-merdeka/10 text-merdeka">
+        {icon}
+      </div>
+
+      <span className="font-medium text-tinta/85">
+        {text}
+      </span>
     </div>
   );
 }
@@ -67,15 +95,19 @@ export function SectionHeading({
   description?: string;
 }) {
   return (
-    <div className="max-w-2xl">
-      <p className="font-mono text-xs font-semibold uppercase tracking-widest text-merdeka">
+    <div className="max-w-3xl">
+      <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-merdeka">
         {eyebrow}
       </p>
-      <h2 className="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">
+
+      <h2 className="mt-3 font-display text-3xl font-black leading-tight sm:text-4xl lg:text-5xl">
         {title}
       </h2>
+
       {description && (
-        <p className="mt-3 text-tinta/70">{description}</p>
+        <p className="mt-4 max-w-2xl leading-8 text-tinta/70">
+          {description}
+        </p>
       )}
     </div>
   );

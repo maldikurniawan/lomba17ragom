@@ -1,21 +1,17 @@
-import { Bunting } from "@/components/Bunting";
 import { Button } from "@/components/ui/button";
 import { acara } from "@/lib/data";
 import { MapPin, PartyPopper } from "lucide-react";
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-4">
-      <Bunting count={30} className="animate-flag-wave" />
-
-      <div className="container grid gap-10 py-14 md:grid-cols-[1.3fr_1fr] md:py-24">
+    <section
+      id="top"
+      className="relative overflow-hidden p-4 sm:py-8 sm:px-20"
+    >
+      <div className="container mx-auto grid items-center gap-4 sm:gap-14 lg:grid-cols-[1.25fr_0.9fr]">
+        {/* Left */}
         <div className="animate-fade-up">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border-2 border-tinta bg-kunyit px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-widest text-tinta">
-            <PartyPopper size={14} />
-            HUT ke-81 Kemerdekaan RI · {acara.tahun}
-          </div>
-
-          <h1 className="font-display text-[2.6rem] font-black leading-[1.02] tracking-tight sm:text-6xl lg:text-[4.2rem]">
+          <h1 className="font-display text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-7xl">
             Satu RT,
             <br />
             <span className="text-merdeka">Satu Semangat</span>
@@ -23,7 +19,7 @@ export function Hero() {
             Merdeka.
           </h1>
 
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-tinta/80">
+          <p className="mt-6 max-w-xl text-base leading-8 text-tinta/80 sm:text-lg">
             {acara.penyelenggara} mengajak seluruh warga{" "}
             <strong className="text-tinta">{acara.lokasiSingkat}</strong>{" "}
             merayakan kemerdekaan lewat lomba, silaturahmi, dan malam syukuran
@@ -34,37 +30,60 @@ export function Hero() {
             "{acara.tema}"
           </blockquote>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button size="lg" render={<a href="#lomba" />}>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button
+              size="lg"
+              className="w-full sm:w-auto"
+              render={<a href="#lomba" />}
+            >
               Lihat Rangkaian Lomba
             </Button>
-            <Button size="lg" variant="outline" render={<a href="#jadwal" />}>
+
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full sm:w-auto"
+              render={<a href="#jadwal" />}
+            >
               Cek Jadwal & Lokasi
             </Button>
           </div>
 
           <div className="mt-8 flex items-center gap-2 text-sm text-tinta/60">
             <MapPin size={16} />
-            {acara.kelurahan}, {acara.kota}
+            <span>
+              {acara.kelurahan}, {acara.kota}
+            </span>
           </div>
         </div>
 
-        <div className="relative flex items-center justify-center animate-fade-up [animation-delay:150ms]">
-          <div className="relative w-full max-w-sm rotate-2 rounded-2xl border-2 border-tinta bg-kertas p-6 shadow-[6px_6px_0px_0px_rgba(34,26,18,0.9)]">
-            <div className="absolute -top-4 left-1/2 h-8 w-14 -translate-x-1/2 -rotate-3 rounded-sm border-2 border-tinta/70 bg-kunyit/70" />
-            <p className="font-mono text-xs uppercase tracking-widest text-tinta/50">
+        {/* Right */}
+        <div className="animate-fade-up flex flex-col items-center justify-center gap-5 [animation-delay:150ms]">
+          <div className="inline-flex items-center gap-2 rounded-full border-2 border-tinta bg-kunyit px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest text-tinta sm:text-xs">
+            <PartyPopper size={14} />
+            HUT ke-81 Kemerdekaan RI · {acara.tahun}
+          </div>
+
+          <div className="relative w-full max-w-sm rotate-1 rounded-3xl border-2 border-tinta bg-kertas p-6 shadow-[8px_8px_0px_rgba(34,26,18,0.9)] transition-transform duration-300 hover:-rotate-1 hover:-translate-y-1">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-tinta/50">
               Puncak Perayaan
             </p>
-            <p className="mt-1 font-display text-3xl font-bold">17 Agustus</p>
-            <p className="font-display text-3xl font-bold text-merdeka">
+
+            <h2 className="mt-2 font-display text-4xl font-black">
+              17 Agustus
+            </h2>
+
+            <h3 className="font-display text-4xl font-black text-merdeka">
               2026
-            </p>
-            <div className="mt-4 h-0.5 w-full bg-tinta/15" />
-            <p className="mt-4 text-sm text-tinta/70">
+            </h3>
+
+            <div className="my-5 h-px w-full bg-tinta/15" />
+
+            <p className="leading-7 text-sm text-tinta/70">
               Malam Puncak &amp; Syukuran dimulai{" "}
               <strong className="text-tinta">19.30 WIB</strong> di Halaman
-              Warga RT 01 — potong tumpeng, hadiah, dan hiburan orgen untuk
-              semua.
+              Warga RT 01. Acara akan dimeriahkan dengan potong tumpeng,
+              pembagian hadiah, dan hiburan orgen untuk seluruh warga.
             </p>
           </div>
         </div>

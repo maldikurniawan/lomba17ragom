@@ -3,14 +3,14 @@ import { panitia } from "@/lib/data";
 
 export function Panitia() {
   return (
-    <section id="panitia" className="container py-20">
+    <section id="panitia" className="p-4 sm:px-20 sm:py-8">
       <SectionHeading
         eyebrow="Di Balik Layar"
         title="Susunan Kepanitiaan"
         description="Tetangga sendiri yang merancang dan menjalankan seluruh rangkaian acara."
       />
 
-      <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {panitia.map((p, i) => (
           <div
             key={p.jabatan}

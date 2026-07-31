@@ -6,16 +6,16 @@ import { CheckCircle2 } from "lucide-react";
 
 export function Lomba() {
   return (
-    <section id="lomba" className="border-y-2 border-tinta bg-kertas/40 py-20">
+    <section id="lomba" className="bg-kertas/40 p-4 sm:px-20 sm:py-8">
       <div className="container">
         <SectionHeading
           eyebrow="Jenis Kegiatan"
           title="17 Kategori Lomba, Semua Umur Ikut Seru-Seruan"
-          description="Dari makan kerupuk sampai karaoke ibu-ibu — pilih tab kategorinya."
+          description="Dari makan kerupuk sampai karaoke ibu-ibu."
         />
 
-        <Tabs defaultValue={lomba[0].key} className="mt-10">
-          <TabsList>
+        <Tabs defaultValue={lomba[0].key} className="mt-8">
+          <TabsList className="mx-auto">
             {lomba.map((l) => (
               <TabsTrigger key={l.key} value={l.key}>
                 {l.kategori}
@@ -28,6 +28,7 @@ export function Lomba() {
               <div className="mb-4">
                 <Badge variant={l.warna}>{l.kategori}</Badge>
               </div>
+
               <ul className="grid gap-3 sm:grid-cols-2">
                 {l.daftar.map((item) => (
                   <li
@@ -38,7 +39,7 @@ export function Lomba() {
                       size={18}
                       className="mt-0.5 shrink-0 text-daun"
                     />
-                    {item}
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>

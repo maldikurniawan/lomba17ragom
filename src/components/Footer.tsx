@@ -3,9 +3,9 @@ import { acara, penutup } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer id="footer" className="bg-tinta text-kapas">
+    <footer id="footer" className="bg-tinta text-kapas p-4 sm:px-20 sm:pt-8">
       <Bunting count={30} />
-      <div className="container py-16">
+      <div className="container">
         <div className="grid gap-10 md:grid-cols-[1.3fr_1fr]">
           <div>
             <p className="font-display text-2xl font-bold leading-snug sm:text-3xl">
@@ -40,7 +40,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-kapas/15 pt-6 text-center text-xs text-kapas/40">
+        <div className="mt-8 pt-4 border-t border-kapas/15 text-center text-xs text-kapas/40">
           Dirgahayu Republik Indonesia ke-81 · Merdeka!
         </div>
       </div>
