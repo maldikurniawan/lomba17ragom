@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const LINKS = [
   { href: "#jadwal", label: "Jadwal" },
@@ -13,8 +14,12 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const location = useLocation();
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
 
     window.addEventListener("scroll", onScroll);
 
@@ -33,11 +38,49 @@ export function Header() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
+  const renderLink = (item: (typeof LINKS)[number]) => {
+    const isSection = item.href.startsWith("#");
+
+    if (isSection) {
+      if (location.pathname === "/") {
+        return (
+          <a
+            key={item.href}
+            href={item.href}
+            className="text-sm font-semibold text-tinta/80 transition hover:text-merdeka"
+          >
+            {item.label}
+          </a>
+        );
+      }
+
+      return (
+        <Link
+          key={item.href}
+          to={`/${item.href}`}
+          className="text-sm font-semibold text-tinta/80 transition hover:text-merdeka"
+        >
+          {item.label}
+        </Link>
+      );
+    }
+
+    return (
+      <Link
+        key={item.href}
+        to={item.href}
+        className="text-sm font-semibold text-tinta/80 transition hover:text-merdeka"
+      >
+        {item.label}
+      </Link>
+    );
+  };
+
   return (
     <header className={headerClass(scrolled)}>
       <div className="mx-auto flex h-16 w-full items-center justify-between px-4 sm:px-20">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full border border-tinta bg-merdeka font-display font-bold text-kapas">
             81
           </div>
@@ -51,24 +94,18 @@ export function Header() {
               Bukit Kemiling Permai
             </p>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop */}
         <nav className="hidden items-center gap-8 md:flex">
-          {LINKS.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-semibold text-tinta/80 transition hover:text-merdeka"
-            >
-              {item.label}
-            </a>
-          ))}
+          {LINKS.map(renderLink)}
         </nav>
 
         <div className="hidden md:block">
           <Button size="sm">
-            <a href="#">Ikut Meriahkan</a>
+            <Link to="">
+              Ikut Meriahkan
+            </Link>
           </Button>
         </div>
 
@@ -89,21 +126,50 @@ export function Header() {
       >
         <nav className="bg-kapas">
           <div className="mx-auto flex max-w-7xl flex-col gap-2 p-4 sm:px-20">
-            {LINKS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="rounded-lg py-3 font-medium transition hover:bg-kertas hover:text-merdeka"
-              >
-                {item.label}
-              </a>
-            ))}
+            {LINKS.map((item) => {
+              const isSection = item.href.startsWith("#");
 
-            <Button className="w-full mt-4">
-              <a href="#" onClick={() => setOpen(false)}>
+              if (isSection) {
+                return location.pathname === "/" ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-lg py-3 font-medium transition hover:bg-kertas hover:text-merdeka"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.href}
+                    to={`/${item.href}`}
+                    onClick={() => setOpen(false)}
+                    className="rounded-lg py-3 font-medium transition hover:bg-kertas hover:text-merdeka"
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg py-3 font-medium transition hover:bg-kertas hover:text-merdeka"
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+
+            <Button className="mt-4 w-full">
+              <Link
+                to=""
+                onClick={() => setOpen(false)}
+              >
                 Ikut Meriahkan
-              </a>
+              </Link>
             </Button>
           </div>
         </nav>
@@ -115,8 +181,6 @@ export function Header() {
 function headerClass(scrolled: boolean) {
   return [
     "sticky top-0 z-50 w-full bg-kapas border-b border-tinta/10",
-    scrolled
-      ? ""
-      : "",
+    scrolled ? "" : "",
   ].join(" ");
 }

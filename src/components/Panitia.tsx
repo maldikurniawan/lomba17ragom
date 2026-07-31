@@ -3,7 +3,7 @@ import { panitia } from "@/lib/data";
 
 export function Panitia() {
   return (
-    <section id="panitia" className="p-4 py-20 sm:p-20 sm:py-0">
+    <section id="panitia" className="p-4 py-20 sm:p-20">
       <SectionHeading
         eyebrow="Di Balik Layar"
         title="Susunan Kepanitiaan"
