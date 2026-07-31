@@ -1,6 +1,5 @@
-import { Separator as SeparatorPrimitive } from "@base-ui/react/separator"
-
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
+import { Separator as SeparatorPrimitive } from "@base-ui/react/separator";
 
 function Separator({
   className,
@@ -12,12 +11,13 @@ function Separator({
       data-slot="separator"
       orientation={orientation}
       className={cn(
-        "shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch",
+        "shrink-0 bg-tinta/20",
+        orientation === "horizontal" ? "h-0.5 w-full" : "h-full w-0.5",
         className
       )}
       {...props}
     />
-  )
+  );
 }
 
-export { Separator }
+export { Separator };

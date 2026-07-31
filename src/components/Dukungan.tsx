@@ -45,8 +45,8 @@ export function Dukungan() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-tinta/75">{anggaran.sumberLain}</p>
-              <Button className="mt-4 w-full" variant="gold" asChild>
-                <a href="#footer">Jadi Donatur / Sponsor</a>
+              <Button className="mt-4 w-full" variant="gold" render={<a href="#footer" />}>
+                Jadi Donatur / Sponsor
               </Button>
             </CardContent>
           </Card>

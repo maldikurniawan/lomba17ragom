@@ -49,8 +49,8 @@ export function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <Button size="sm" asChild>
-            <a href="#dukung">Ikut Meriahkan</a>
+          <Button size="sm" render={<a href="#dukung" />}>
+            Ikut Meriahkan
           </Button>
         </div>
 

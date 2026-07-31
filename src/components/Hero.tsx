@@ -35,11 +35,11 @@ export function Hero() {
           </blockquote>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button size="lg" asChild>
-              <a href="#lomba">Lihat Rangkaian Lomba</a>
+            <Button size="lg" render={<a href="#lomba" />}>
+              Lihat Rangkaian Lomba
             </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="#jadwal">Cek Jadwal & Lokasi</a>
+            <Button size="lg" variant="outline" render={<a href="#jadwal" />}>
+              Cek Jadwal & Lokasi
             </Button>
           </div>
 
@@ -59,7 +59,7 @@ export function Hero() {
             <p className="font-display text-3xl font-bold text-merdeka">
               2026
             </p>
-            <div className="mt-4 h-[2px] w-full bg-tinta/15" />
+            <div className="mt-4 h-0.5 w-full bg-tinta/15" />
             <p className="mt-4 text-sm text-tinta/70">
               Malam Puncak &amp; Syukuran dimulai{" "}
               <strong className="text-tinta">19.30 WIB</strong> di Halaman

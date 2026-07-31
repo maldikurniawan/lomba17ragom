@@ -36,7 +36,7 @@ export function Lomba() {
                   >
                     <CheckCircle2
                       size={18}
-                      className="mt-0.5 flex-shrink-0 text-daun"
+                      className="mt-0.5 shrink-0 text-daun"
                     />
                     {item}
                   </li>
