@@ -1,44 +1,63 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import {
+    Dialog,
+    DialogContent,
+} from "@/components/ui/dialog";
 import { useState } from "react";
 
-const FILTERS = ["All", "2025", "2026"];
+interface Photo {
+    id: number;
+    year: string;
+    image: string;
+    title: string;
+}
 
-const PHOTOS = [
+type FilterYear = "All" | "2025" | "2026";
+
+const FILTERS: FilterYear[] = ["All", "2025", "2026"];
+
+const PHOTOS: Photo[] = [
     {
         id: 1,
         year: "2026",
-        image: "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=600&q=80",
+        image:
+            "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=80",
         title: "Pembukaan Acara",
     },
     {
         id: 2,
         year: "2026",
-        image: "https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=600&q=80",
+        image:
+            "https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=800&q=80",
         title: "Perlombaan",
     },
     {
         id: 3,
         year: "2025",
-        image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80",
+        image:
+            "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80",
         title: "Kegiatan Warga",
     },
     {
         id: 4,
         year: "2025",
-        image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=600&q=80",
+        image:
+            "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=800&q=80",
         title: "Kebersamaan",
     },
     {
         id: 5,
         year: "2026",
-        image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80",
+        image:
+            "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80",
         title: "Acara 17 Agustus",
     },
 ];
 
 export default function Dokumentasi() {
-    const [selectedYear, setSelectedYear] = useState("All");
+    const [selectedYear, setSelectedYear] = useState<FilterYear>("All");
+    const [activePhoto, setActivePhoto] = useState<Photo | null>(null);
 
     const filteredPhotos =
         selectedYear === "All"
@@ -46,14 +65,15 @@ export default function Dokumentasi() {
             : PHOTOS.filter((item) => item.year === selectedYear);
 
     return (
-        <div className="bg-kapas">
+        <div className="flex min-h-screen flex-col bg-kapas">
             <Header />
 
-            <main className="mx-auto min-h-screen relative p-4 pb-20 sm:pb-20 sm:py-8 sm:px-20">
+            <main className="relative mx-auto w-full flex-1 p-4 pb-20 sm:px-20 sm:py-8 sm:pb-20">
                 <div className="mb-10">
                     <h1 className="font-display text-4xl font-bold text-tinta">
                         Dokumentasi
                     </h1>
+
                     <p className="mt-2 text-tinta/60">
                         Kumpulan foto kegiatan RT 01.
                     </p>
@@ -62,7 +82,10 @@ export default function Dokumentasi() {
                 <div className="flex flex-col gap-8 md:flex-row">
                     <aside className="w-full md:w-56">
                         <div className="rounded-xl border border-tinta/30 bg-kapas p-4">
-                            <h2 className="mb-4 font-bold text-tinta">Filter Tahun</h2>
+                            <h2 className="mb-4 font-bold text-tinta">
+                                Filter Tahun
+                            </h2>
+
                             <div className="flex gap-2 overflow-x-auto md:flex-col">
                                 {FILTERS.map((item) => (
                                     <button
@@ -70,7 +93,7 @@ export default function Dokumentasi() {
                                         onClick={() => setSelectedYear(item)}
                                         className={`rounded-lg px-4 py-2 text-left font-semibold transition ${selectedYear === item
                                             ? "bg-merdeka text-kapas"
-                                            : "hover:bg-kertas"
+                                            : "text-tinta hover:bg-kertas"
                                             }`}
                                     >
                                         {item}
@@ -85,14 +108,15 @@ export default function Dokumentasi() {
                             {filteredPhotos.map((photo) => (
                                 <div
                                     key={photo.id}
-                                    className="group overflow-hidden rounded-xl border border-tinta/30 bg-kapas"
+                                    onClick={() => setActivePhoto(photo)}
+                                    className="group cursor-pointer overflow-hidden rounded-xl border border-tinta/30 bg-kapas"
                                 >
                                     <img
                                         src={photo.image}
                                         alt={photo.title}
                                         loading="lazy"
                                         decoding="async"
-                                        className="h-64 w-full object-cover transition duration-300 group-hover:scale-105 will-change-transform"
+                                        className="h-64 w-full object-cover transition duration-300 group-hover:scale-105"
                                     />
                                 </div>
                             ))}
@@ -106,6 +130,25 @@ export default function Dokumentasi() {
                     </section>
                 </div>
             </main>
+
+            <Dialog
+                open={!!activePhoto}
+                onOpenChange={(open) => {
+                    if (!open) {
+                        setActivePhoto(null);
+                    }
+                }}
+            >
+                <DialogContent showCloseButton={false} className="border-tinta/20 bg-kapas p-2">
+                    {activePhoto && (
+                        <img
+                            src={activePhoto.image}
+                            alt={activePhoto.title}
+                            className="max-h-[80vh] w-full rounded-xl object-contain"
+                        />
+                    )}
+                </DialogContent>
+            </Dialog>
 
             <Footer />
         </div>
