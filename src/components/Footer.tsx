@@ -27,9 +27,6 @@ export function Footer() {
           </div>
 
           <div className="md:text-right">
-            <p className="font-mono text-xs uppercase tracking-widest text-kapas/50">
-              {penutup.kota}, {penutup.tanggal}
-            </p>
             <p className="mt-2 font-display text-lg font-semibold">
               {acara.penyelenggara}
             </p>

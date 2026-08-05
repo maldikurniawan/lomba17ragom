@@ -89,7 +89,6 @@ export const panitia = [
 
 export const penutup = {
   kota: 'Bandar Lampung',
-  tanggal: '7 Agustus 2026',
   ketua: 'Egy Anggita',
   sekretaris: 'Metha Aisyah Ramadhani',
   ketuaRt: 'Zairi Bakar'
